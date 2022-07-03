@@ -13,5 +13,5 @@ RUN pip3 install fastapi pydantic uvicorn && pip3 install numpy --upgrade && pip
 COPY web.py ./
 COPY model.py ./
 COPY cache_model.py ./
-RUN python ./cache_model.py
+RUN python3 ./cache_model.py
 CMD uvicorn web:app --port 8080 --host 0.0.0.0
