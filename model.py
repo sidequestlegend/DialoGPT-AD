@@ -1,4 +1,4 @@
-from transformers import AutoModelWithLMHead, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 from datetime import datetime
 
