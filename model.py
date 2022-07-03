@@ -36,7 +36,8 @@ prompt = "Hello my name is Paul and"
 input_ids = tokenizer.encode(str(prompt), return_tensors='pt').cuda()
 
 output = model.generate(
-    input_ids
+    input_ids,
+    do_sample=True,
 )
 
 print('⌚ Test response time', format_timedelta(datetime.now() - t1))
@@ -52,6 +53,7 @@ def eval(input):
             f"input tokens and requested to generate {input.generate_tokens_limit} tokens") 
     output = model.generate(
         input_ids,
+        do_sample=True,
         max_length=token_count + input.generate_tokens_limit,
         top_p=input.top_p,
         top_k=input.top_k,
