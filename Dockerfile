@@ -12,4 +12,6 @@ RUN pip3 install mesh-transformer-jax/ jax==0.2.12 jaxlib==0.1.68 -f https://sto
 RUN pip3 install fastapi pydantic uvicorn && pip3 install numpy --upgrade && pip3 install git+https://github.com/huggingface/transformers
 COPY web.py ./
 COPY model.py ./
+COPY cache_model.py ./
+RUN python ./cache_model.py
 CMD uvicorn web:app --port 8080 --host 0.0.0.0
