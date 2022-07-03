@@ -38,6 +38,13 @@ input_ids = tokenizer.encode(str(prompt), return_tensors='pt').cuda()
 output = model.generate(
     input_ids,
     do_sample=True,
+    max_length=100,
+    temperature=0.8,
+    top_k=0,
+    top_p=0.7,
+    eos_token_id=198,
+    min_length=1,
+    repetition_penalty=1
 )
 
 print('⌚ Test response time', format_timedelta(datetime.now() - t1))
