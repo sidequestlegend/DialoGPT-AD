@@ -25,8 +25,3 @@ t1 = datetime.now()
 model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-large")
 print('⌚ Model loaded (.from_pretrained)', format_timedelta(datetime.now()-t1))
 
-t1 = datetime.now()
-
-model.half().cuda()
-
-print('⌚ Model half().cuda()', format_timedelta(datetime.now()-t1))
