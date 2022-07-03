@@ -51,7 +51,14 @@ def eval(input):
         raise Exception(f"This model can't generate more then 2048 tokens, you passed {token_count} "+
             f"input tokens and requested to generate {input.generate_tokens_limit} tokens") 
     output = model.generate(
-        input_ids
+        input_ids,
+        max_length=token_count + input.generate_tokens_limit,
+        top_p=input.top_p,
+        top_k=input.top_k,
+        temperature=input.temperature,
+        eos_token_id=input.eos_token_id,
+        min_length=input.min_length,
+        repetition_penalty=input.repetition_penalty
     )
     resp = tokenizer.decode(output[0], skip_special_tokens=True)
     print(f'⌚ Response time {format_timedelta(datetime.now() - t1)} in len: { len(input.text) } resp len { len(resp) }')
