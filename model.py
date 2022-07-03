@@ -39,7 +39,7 @@ output = model.generate(
     input_ids,
     do_sample=True,
     max_length=100,
-    temperature=0.8,
+    temperature=1,
     top_k=0,
     top_p=0.7,
     eos_token_id=198,
