@@ -18,11 +18,11 @@ def format_timedelta(td):
 
     
 t1 = datetime.now()
-tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
+tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-large")
 print('⌚ Model tokenizer created', format_timedelta(datetime.now()-t1))
 
 t1 = datetime.now()
-model = AutoModelWithLMHead.from_pretrained("microsoft/DialoGPT-small")
+model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-large")
 print('⌚ Model loaded (.from_pretrained)', format_timedelta(datetime.now()-t1))
 
 t1 = datetime.now()
@@ -36,16 +36,9 @@ prompt = "Hello my name is Paul and"
 input_ids = tokenizer.encode(str(prompt), return_tensors='pt').cuda()
 
 output = model.generate(
-    input_ids,
-    do_sample=True,
-    max_length=100,
-    temperature=0.8,
-    top_k=0,
-    top_p=0.7,
-    eos_token_id=198,
-    min_length=1,
-    repetition_penalty=0.5
+    input_ids
 )
+
 print('⌚ Test response time', format_timedelta(datetime.now() - t1))
 print('🤖 Test response', tokenizer.decode(output[0], skip_special_tokens=True))
 
